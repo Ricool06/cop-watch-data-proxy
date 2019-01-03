@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "e2e:ci": "cucumber-js --exit",
-    "e2e": "cucumber-js",
+    "e2e:ci": "GATEWAY_HOST=0.0.0.0 cucumber-js --exit",
+    "e2e": "GATEWAY_HOST=0.0.0.0 cucumber-js",
     "test:ci": "jest",
     "test": "jest --watch",
     "lint": "eslint ./"
@@ -29,9 +29,12 @@
     "axon": "^2.0.3"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
     "cucumber": "^5.1.0",
     "eslint": "^5.11.1",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.14.0"
+    "eslint-plugin-import": "^2.14.0",
+    "nock": "^10.0.6"
   }
 }
