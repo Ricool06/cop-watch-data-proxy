@@ -1,0 +1,37 @@
+{
+  "name": "cop-watch-data-proxy",
+  "version": "0.1.0",
+  "description": "Used by other services in cop-watch to get data from data.police.uk",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "e2e:ci": "cucumber-js --exit",
+    "e2e": "cucumber-js",
+    "test:ci": "jest",
+    "test": "jest --watch",
+    "lint": "eslint ./"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "clearMocks": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ricool06/cop-watch-data-proxy.git"
+  },
+  "author": "Ricool06",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Ricool06/cop-watch-data-proxy/issues"
+  },
+  "homepage": "https://github.com/Ricool06/cop-watch-data-proxy#readme",
+  "dependencies": {
+    "axon": "^2.0.3"
+  },
+  "devDependencies": {
+    "cucumber": "^5.1.0",
+    "eslint": "^5.11.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
+}
