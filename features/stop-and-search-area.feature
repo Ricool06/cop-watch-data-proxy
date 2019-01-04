@@ -5,7 +5,7 @@ Feature: Stop and searches
 
   Scenario: Get stop and search data in rectangle
     Given the police data API is up
-    When a "GET" message is received from the gateway with topic "request-id:get-police-data:stop-and-search:area" and query:
+    When a "GET" message is received from the gateway with topic "request-id:get-police-data" and query:
     """
     {
       stopAndSearches(poly: "52.2,0.5:52.8,0.2:52.1,0.88") {

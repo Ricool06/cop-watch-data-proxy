@@ -13,7 +13,12 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "clearMocks": true
+    "clearMocks": true,
+    "collectCoverageFrom": [
+      "app/**/*.js",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/path/to/dir/"
+    ]
   },
   "repository": {
     "type": "git",
@@ -26,7 +31,10 @@
   },
   "homepage": "https://github.com/Ricool06/cop-watch-data-proxy#readme",
   "dependencies": {
-    "axon": "^2.0.3"
+    "axon": "^2.0.3",
+    "graphql": "^14.0.2",
+    "inversify": "^5.0.1",
+    "reflect-metadata": "^0.1.12"
   },
   "devDependencies": {
     "chai": "^4.2.0",
@@ -35,6 +43,7 @@
     "eslint": "^5.11.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
+    "jest": "^23.6.0",
     "nock": "^10.0.6"
   }
 }
