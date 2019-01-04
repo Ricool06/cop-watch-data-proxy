@@ -16,18 +16,19 @@ async function bindSocket(socketObj, port, host) {
 
 Given('the police data API is up', function () { });
 
-When('a {string} message is received from the gateway with topic {string} and query:', async function (method, topic, query) {
+When('a {string} message is received from the gateway with topic {string} and query:', function (method, topic, query, done) {
   const gatewayPubSocket = socket('pub');
   const gatewaySubSocket = socket('sub');
 
-  await bindSocket(gatewayPubSocket, gatewayPubPort, gatewayHost);
-  await bindSocket(gatewaySubSocket, gatewaySubPort, gatewayHost);
+  bindSocket(gatewayPubSocket, gatewayPubPort, gatewayHost);
+  bindSocket(gatewaySubSocket, gatewaySubPort, gatewayHost);
 
   const requestId = topic.split()[0];
 
   gatewaySubSocket.subscribe(`${requestId}:final-response`);
   gatewaySubSocket.once('message', (responseTopic, response) => {
     this.response = response;
+    done();
   });
 
   const message = { method, query };

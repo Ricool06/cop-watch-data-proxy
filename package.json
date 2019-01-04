@@ -7,8 +7,8 @@
     "start": "node server.js",
     "e2e:ci": "GATEWAY_HOST=0.0.0.0 cucumber-js --exit",
     "e2e": "GATEWAY_HOST=0.0.0.0 cucumber-js",
-    "test:ci": "jest",
-    "test": "jest --watch",
+    "test:ci": "GATEWAY_HOST=0.0.0.0 jest",
+    "test": "GATEWAY_HOST=0.0.0.0 jest --watch",
     "lint": "eslint ./"
   },
   "jest": {
@@ -31,8 +31,10 @@
   },
   "homepage": "https://github.com/Ricool06/cop-watch-data-proxy#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "axon": "^2.0.3",
     "graphql": "^14.0.2",
+    "graphql-tag": "^2.10.0",
     "inversify": "^5.0.1",
     "reflect-metadata": "^0.1.12"
   },
@@ -42,6 +44,7 @@
     "cucumber": "^5.1.0",
     "eslint": "^5.11.1",
     "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-graphql": "^3.0.1",
     "eslint-plugin-import": "^2.14.0",
     "jest": "^23.6.0",
     "nock": "^10.0.6"
