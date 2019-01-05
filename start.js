@@ -1,1 +1,1 @@
-require('./server').main();
+require('./server')();
