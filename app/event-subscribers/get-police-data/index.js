@@ -12,7 +12,16 @@ class GetPoliceDataSubscriber {
 
   async handle([requestId, request]) {
     return graphql(this.graphqlSchema, request.query.query, this.resolvers)
-      .then(response => this.pubSocket.send(`${requestId}:final-response`, response));
+      .then((result) => {
+        const response = { status: 200, body: result };
+
+        if (result.errors) {
+          const status = result.errors[0].extensions && result.errors[0].extensions.status;
+          response.status = status || 400;
+        }
+
+        this.pubSocket.send(`${requestId}:final-response`, response);
+      });
   }
 }
 

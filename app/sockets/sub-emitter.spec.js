@@ -4,12 +4,15 @@ const config = require('../../config');
 
 describe('SubEmitterSocket', () => {
   test('should connect the socket to the gateway', async (done) => {
+    const fakeGateway = socket('pub');
+
     subEmitterSocket.sock.on('connect', (socketInstance) => {
       expect(socketInstance.readable).toBeTruthy();
+      subEmitterSocket.close();
+      fakeGateway.close();
       done();
     });
 
-    const fakeGateway = socket('pub');
     fakeGateway.bind(config.app.subscribeSocketPort, config.app.gatewayHost);
   });
 });

@@ -31,4 +31,22 @@ const testDescription = describe('StopsStreetService', async () => {
 
     expect(actualResponse).toEqual(expectedResponse);
   });
+
+  test('should rethrow GraphQLError with pertinent fields extracted as extensions', async () => {
+    const polygon = '52.2,0.5:52.8,0.2:52.1,0.88';
+    const expectedStatus = 500;
+    const expectedMessage = 'Oh no! The API is broken!';
+
+    nock(config.app.policeDataApiURL)
+      .persist()
+      .get(() => true)
+      .query(() => true)
+      .reply(expectedStatus, expectedMessage);
+
+    const actualResponse = await stopsStreetService.getPoly(polygon)
+      .catch(err => err);
+
+    expect(actualResponse.extensions.status).toBe(expectedStatus);
+    expect(actualResponse.message).toBe(expectedMessage);
+  });
 });
