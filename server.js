@@ -1,10 +1,9 @@
+/* eslint-disable global-require */
 require('reflect-metadata');
 const { Container } = require('inversify');
 const TYPES = require('./app/types');
 const Application = require('./app');
 const GetPoliceDataSubscriber = require('./app/event-subscribers/get-police-data');
-// const subEmitterSocket = require('./app/sockets/sub-emitter');
-// const pubSocket = require('./app/sockets/pub');
 const graphqlSchema = require('./app/graphql/schema');
 const QueryResolvers = require('./app/graphql/resolvers/query');
 const StopsStreetResolver = require('./app/graphql/resolvers/query/stops-street');
