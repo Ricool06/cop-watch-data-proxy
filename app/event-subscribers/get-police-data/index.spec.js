@@ -52,7 +52,7 @@ describe('GetPoliceDataSubscriber', () => {
     };
     const expectedResponse = { data: { someKey: mockResolvers.someKey() } };
 
-    await getPoliceDataSubscriber.handle(mockRequestId, mockRequest);
+    await getPoliceDataSubscriber.handle([mockRequestId, mockRequest]);
 
     expect(pubSocketSpy.send)
       .toHaveBeenCalledWith(`${mockRequestId}:final-response`, expectedResponse);

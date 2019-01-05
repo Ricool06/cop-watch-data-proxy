@@ -4,7 +4,7 @@ const config = require('../../config');
 const stopsSteetService = {
   getPoly: async polygon => axios
     .get(`${config.app.policeDataApiURL}/stops-street?poly=${polygon}`)
-    .then(response => response.data),
+    .then(({ data }) => data),
 };
 
 module.exports = stopsSteetService;

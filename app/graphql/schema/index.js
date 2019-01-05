@@ -11,7 +11,7 @@ const schema = buildSchema(`
   }
 
   type Query {
-    stopsStreet: [StreetStop]!
+    stopsStreet(poly: String!): [StreetStop]!
   }
 `);
 

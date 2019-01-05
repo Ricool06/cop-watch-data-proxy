@@ -27,4 +27,9 @@ describe('StreetStopResolver', () => {
     expect(mockStopsStreetService.getPoly).toHaveBeenCalledWith(expectedPoly);
     expect(actualData).toEqual(mockData);
   });
+
+  test('should have a name property corresponsing to the endpoint it resolves', () => {
+    const stopsStreetResolver = container.get(TYPES.QueryResolver);
+    expect(stopsStreetResolver.name).toEqual('stopsStreet');
+  });
 });

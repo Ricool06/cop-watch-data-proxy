@@ -5,6 +5,7 @@ const TYPES = require('../../../types');
 class StopsStreetResolver {
   constructor(stopsStreetService) {
     this.stopsStreetService = stopsStreetService;
+    this.name = 'stopsStreet';
   }
 
   async resolve({ poly }) {

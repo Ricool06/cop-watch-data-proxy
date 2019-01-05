@@ -8,7 +8,7 @@ Feature: Stop and searches
     When a "GET" message is received from the gateway with topic "request-id:GET:police-data" and query:
     """
     {
-      stopAndSearches(poly: "52.2,0.5:52.8,0.2:52.1,0.88") {
+      stopsStreet(poly: "52.2,0.5:52.8,0.2:52.1,0.88") {
         location {
           latitude
           longitude
@@ -19,18 +19,15 @@ Feature: Stop and searches
     Then I receive a valid stop and search response:
     """
     {
-      "status": 200,
-      "body": {
-        "data": {
-          "stopAndSearches": [
-            {
-              "location": {
-                "latitude": "0.00000",
-                "longitude": "0.00000"
-              }
+      "data": {
+        "stopAndSearches": [
+          {
+            "location": {
+              "latitude": "0.00000",
+              "longitude": "0.00000"
             }
-          ]
-        }
+          }
+        ]
       }
     }
     """

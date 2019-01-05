@@ -11,7 +11,7 @@ class Application {
 
   start() {
     this.eventSubscribers
-      .map(subscriber => this.subSocket.on(subscriber.topic, subscriber.handle));
+      .map(subscriber => this.subSocket.on(subscriber.topic, (...args) => subscriber.handle(args)));
   }
 }
 

@@ -25,7 +25,7 @@ const testDescription = describe('StopsStreetService', async () => {
 
     const expectedResponse = await axios
       .get(`${config.app.policeDataApiURL}/stops-street?poly=${polygon}`)
-      .then(response => response.data);
+      .then(({ data }) => data);
 
     const actualResponse = await stopsStreetService.getPoly(polygon);
 

@@ -10,7 +10,7 @@ class GetPoliceDataSubscriber {
     this.pubSocket = pubSocket;
   }
 
-  async handle(requestId, request) {
+  async handle([requestId, request]) {
     return graphql(this.graphqlSchema, request.query.query, this.resolvers)
       .then(response => this.pubSocket.send(`${requestId}:final-response`, response));
   }
