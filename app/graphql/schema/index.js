@@ -7,7 +7,14 @@ const schema = buildSchema(`
   }
 
   type StreetStop {
-    location: Location!
+    location: Location
+    datetime: String
+    type: String
+    object_of_search: String
+    self_defined_ethnicity: String
+    age_range: String
+    gender: String
+    outcome: String
   }
 
   type Query {

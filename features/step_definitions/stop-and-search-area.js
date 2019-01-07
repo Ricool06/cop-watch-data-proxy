@@ -10,6 +10,7 @@ const { expect } = chai;
 Given('the police data API is up', function () { });
 
 Given('the police data API is returning errors', function () {
+  nock.back.setMode('wild');
   nock(config.app.policeDataApiURL)
     .persist()
     .get(() => true)
@@ -37,10 +38,18 @@ When('a {string} message is received from the gateway with topic {string} and qu
 
 Then('I receive a valid stop and search response:', function (exampleResponseString) {
   const exampleResponse = JSON.parse(exampleResponseString);
-  expect(this.response).to.have.deep.keys(exampleResponse);
+
+  expect(this.response).to.have.keys(exampleResponse);
+  expect(this.response.body).to.have.keys(exampleResponse.body);
+  expect(this.response.body.data).to.have.keys(exampleResponse.body.data);
+  expect(this.response.body.data.stopsStreet[0])
+    .to.have.keys(exampleResponse.body.data.stopsStreet[0]);
+
+  expect(this.response).to.have.status(200);
+  expect(this.response.body.errors).to.be.undefined;
 });
 
 Then('I receive a valid error response:', function (exampleResponseString) {
   const exampleResponse = JSON.parse(exampleResponseString);
-  expect(this.response).to.have.deep.keys(exampleResponse);
+  expect(this.response).to.have.status(exampleResponse.status);
 });
