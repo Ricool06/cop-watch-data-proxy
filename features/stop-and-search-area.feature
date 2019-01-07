@@ -3,7 +3,7 @@ Feature: Stop and searches
   I want to get up to date stop and search data
   So that I can monitor recent searches of people in my community
 
-  Scenario: Get stop and search data in rectangle
+  Scenario: Get basic stop and search data in rectangle
     Given the police data API is up
     When a "GET" message is received from the gateway with topic "request-id:GET:police-data" and query:
     """
@@ -22,12 +22,58 @@ Feature: Stop and searches
       "status": 200,
       "body": {
         "data": {
-          "stopAndSearches": [
+          "stopsStreet": [
             {
               "location": {
                 "latitude": "0.00000",
                 "longitude": "0.00000"
               }
+            }
+          ]
+        }
+      }
+    }
+    """
+
+  Scenario: Get stop and search data in rectangle
+    Given the police data API is up
+    When a "GET" message is received from the gateway with topic "request-id:GET:police-data" and query:
+    """
+    {
+      stopsStreet(poly: "52.2,0.5:52.8,0.2:52.1,0.88") {
+        location {
+          latitude
+          longitude
+        }
+        datetime
+        type
+        object_of_search
+        self_defined_ethnicity
+        age_range
+        gender
+        outcome
+      }
+    }
+    """
+    Then I receive a valid stop and search response:
+    """
+    {
+      "status": 200,
+      "body": {
+        "data": {
+          "stopsStreet": [
+            {
+              "location": {
+                "latitude": "0.00000",
+                "longitude": "0.00000"
+              },
+              "datetime": "2018-11-10T12:01:00+00:00",
+              "type": "Person and Vehicle search",
+              "object_of_search": "Evidence of offences under the Act",
+              "self_defined_ethnicity": "White - English/Welsh/Scottish/Northern Irish/British",
+              "age_range": "over 34",
+              "gender": "Male",
+              "outcome": "A no further action disposal"
             }
           ]
         }

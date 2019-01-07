@@ -28,6 +28,7 @@ Before(async () => {
   const pubPromise = bindSocket(gatewayPubSocket, gatewayPubPort, gatewayHost);
   config.app.publishSocketPort = await bindSocket(gatewaySubSocket, gatewaySubPort, gatewayHost);
   config.app.subscribeSocketPort = await pubPromise;
+
   main();
 });
 
